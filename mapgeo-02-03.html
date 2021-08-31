@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAPGEO-02-03</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+</head>
+<body>
+    <p class="nav"><a href="index.html">&equiv;</a></p>
+    <h1>Charger un fond de carte</h1>
+    <div id="mapid"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <script>
+        let centre = [48.9070, 2.2468]; // La Garenne Colombe
+        let map = L.map('mapid').setView(centre, 16);
+
+        function mapProviders() {
+            return {
+                Satellite: L.tileLayer.provider("Esri.WorldImagery"),
+                Dessin: L.tileLayer.provider("OpenStreetMap.Mapnik")
+            };
+        };
+
+        /*
+         * mapbox
+         */
+        // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        //     maxZoom: 18,
+        //     id: 'mapbox/streets-v11',
+        //     tileSize: 512,
+        //     zoomOffset: -1,
+        //     accessToken: 'your.mapbox.access.token'
+        // }).addTo(map);
+
+        /*
+         * Esri
+         */
+        // L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        // 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        // }).addTo(map);
+
+        /*
+         * OpenStreetMap
+         */
+         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        	maxZoom: 19,
+	        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Ajout d'un marker au centre
+        L.marker(centre).addTo(map);
+
+        // Ajout d'un marker au centre
+        L.marker({ lat:48.9054, lng: 2.2437}).addTo(map);
+
+        // Ajout d'un marker au centre
+        L.marker([48.9083, 2.2403]).addTo(map);
+</script>
+</body>
+</html>
